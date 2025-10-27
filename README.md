@@ -1,85 +1,120 @@
-# Token BDB Frontend
+# 💫 Token BDB — Proyecto de Integración
 
-Aplicación frontend para interactuar con tokens en la blockchain de Stellar.
+Aplicación **frontend** desarrollada en **React** para interactuar con tokens en la **blockchain de Stellar**.  
+Forma parte de la **Clase 6 del programa Código Futura** impulsado por **Buendía Builders**.
 
-## 📋 Requisitos
+---
 
-- Node.js 22 o superior
-- Docker (para contenerización)
-- npm
+## 🪙 Descripción general
 
-## 🚀 Instalación Local
+El proyecto muestra la información principal de un token creado en la red Stellar, incluyendo:
 
-1. Clonar el repositorio:
+- Nombre, símbolo y decimales  
+- Supply total  
+- Dirección de la wallet conectada  
+- Balance del usuario  
+
+La interfaz fue diseñada con un estilo limpio, gradientes púrpura y componentes reutilizables, utilizando la librería **Lucide React** para los íconos.
+
+---
+
+## 📋  Requisitos
+
+- **Node.js** v22 o superior  
+- **npm**  
+- **Docker** (usado para contenerización del entorno)  
+
+---
+
+## 🧩 Contexto del desarrollo
+
+Durante el proceso se realizaron dos grandes etapas de trabajo:
+
+### 🌀 Primer intento
+El entorno fue configurado localmente con Node.js y React.  
+Sin embargo, surgieron errores de compilación al intentar integrar el SDK de Stellar y los íconos de `lucide-react`, como:
+- “Cannot resolve module 'lucide-react'”
+- “Unexpected token ‘<’ in JSX”
+- Conflictos entre componentes y rutas de importación.
+
+El proyecto no llegaba a ejecutarse correctamente.
+
+---
+
+### 🚀 Segundo intento — versión final
+
+Para solucionar los errores, se decidió **migrar el entorno a Docker**, logrando aislar dependencias y estabilizar la compilación.
+
+- Se creó un **contenedor Docker** con Node 22 y React configurado.  
+- Se instalaron nuevamente las dependencias:
+  ```bash
+  npm install lucide-react
+  npm install stellar-sdk
+  ```
+- Se corrigieron importaciones:
 ```bash
-git clone <url-del-repositorio>
-cd token-bdb-frontend
+import { Wallet, Star } from "lucide-react";
 ```
+- Se modularizó el código y se verificó la conexión con el SDK.
 
-2. Instalar dependencias:
-```bash
-npm install
-```
+El resultado fue una aplicación completamente funcional, estable y portable.
 
-3. Iniciar el servidor de desarrollo:
-```bash
-npm run dev
-```
+#### 🧱 Uso de Docker
+Docker permitió crear un entorno limpio y reproducible, evitando conflictos con versiones locales.
+Dentro del contenedor se ejecutó el servidor de desarrollo (npm run dev), garantizando que las dependencias de React y Stellar SDK funcionaran correctamente.
 
-4. Abrir en el navegador: `http://localhost:5173`
-
-## 🐳 Uso con Docker
-
-### Construir la imagen
+Comandos principales:
 
 ```bash
-docker build -t token-bdb-frontend .
+docker build -t token-bdb .
+docker run -it -p 3000:3000 token-bdb
 ```
 
-### Ejecutar el contenedor
+#### ❌ Por qué no se usó Scaffold Stellar
+Aunque se intentó el uso de Scaffold Stellar (el entorno oficial de desarrollo rápido de Stellar), se descartó por los siguientes motivos:
 
-```bash
-docker run -p 5173:5173 token-bdb-frontend
-```
+- Requería versiones específicas de dependencias que no coincidían con las del entorno del curso.
 
-### Acceder a la aplicación
+- Presentaba conflictos en la instalación local de paquetes (problemas con pnpm y vite).
 
-Abrir en el navegador: `http://localhost:5173`
+- Se priorizó la integración manual del SDK dentro de un entorno Dockerizado React más controlado.
 
-### Detener el contenedor
+#### 🧠 Aprendizajes principales
+- Integración del SDK de Stellar en React.
 
-Presionar `Ctrl + C` en la terminal donde está corriendo.
+- Uso de Docker para aislar y contener el proyecto.
 
-## 📁 Estructura del Proyecto
+- Corrección de errores de compilación JSX y módulos.
 
-```
-token-bdb-frontend/
-├── packages/
-│   └── token_bdb/           # Paquete generado con Stellar CLI
-├── src/                     # Código fuente del frontend
-├── Dockerfile               # Configuración de Docker
-├── .dockerignore           # Archivos excluidos de Docker
-├── package.json            # Dependencias del proyecto
-└── README.md               # Este archivo
-```
+- Documentación del proceso y resolución iterativa de problemas.
 
-## 🛠️ Scripts Disponibles
+#### ✅ Resultado final
+Captura del proyecto funcionando:
 
-- `npm run dev` - Inicia el servidor de desarrollo
-- `npm run build` - Construye la aplicación para producción
-- `npm run start:docker` - Inicia Vite con host habilitado (para Docker)
 
-## ⚠️ Notas Importantes
 
-- Al correr en Docker, puede aparecer el error "Error al obtener balance" al conectar la wallet. Esto es normal porque el contenedor no tiene acceso directo a servicios locales o externos que requiera la aplicación.
-- La aplicación se visualiza correctamente en el navegador, pero la funcionalidad completa requiere configuración adicional de red.
+Vista general:
 
-## 🔧 Tecnologías
+- Token: BuenDia Builder (BDB)
 
-- Vite
-- Node.js 22
-- Docker
-- Stellar SDK
+- Contract ID visible parcialmente
+
+- Wallet conectada con balance
+
+- Interfaz limpia con gradiente y tarjetas informativas
+
+#### 📅 Próximos pasos
+- Agregar envío de transacciones de prueba.
+
+- Mostrar balances dinámicos desde la red Stellar.
+
+- Implementar conexión con más wallets (Freighter, Albedo, etc.).
+
+- Deploy en Vercel o Netlify.
+
+
+Proyecto desarrollado en el marco del curso Código Futura — Buendía Builders.
+
 
 
 
