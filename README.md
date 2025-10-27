@@ -5,7 +5,7 @@ Forma parte de la **Clase 6 del programa Código Futura** impulsado por **Buend�
 
 ---
 
-## 🪙 Descripción general
+## 🌟 Descripción general
 
 El proyecto muestra la información principal de un token creado en la red Stellar, incluyendo:
 
@@ -91,7 +91,7 @@ Aunque se intentó el uso de Scaffold Stellar (el entorno oficial de desarrollo 
 #### ✅ Resultado final
 Captura del proyecto funcionando:
 
-
+<img width="1366" height="768" alt="Capture d’écran (57)" src="https://github.com/user-attachments/assets/19a902c3-62e7-415e-8bce-af939649651d" />
 
 Vista general:
 
